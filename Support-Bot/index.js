@@ -52,7 +52,7 @@ bot.on("message", async message =>{
         let msg = await message.channel.send("Generating...")
 
     let {body} = await superagent
-    .get(`http://aws.random.cat/meow`)
+    .get(`https ( bổ sung sau)`)
     //console.log(body.file)
     if(!{body}) return message.channel.send("I broke! Try again.")
 
@@ -71,7 +71,7 @@ bot.on("message", async message =>{
         let msg = await message.channel.send("Generating...")
 
         let {body} = await superagent
-        .get(`https://dog.ceo/api/breeds/image/random`)
+        .get(`https ( bổ sung sau)`)
         //console.log(body.file)
         if(!{body}) return message.channel.send("I broke! Try again.")
     
@@ -127,7 +127,7 @@ bot.on("message", async message =>{
         let msg = await message.channel.send("Generating...")
 
     let {body} = await superagent
-    .get(`https://api-to.get-a.life/meme`)
+    .get(`https ( bổ sung sau)`)
     //console.log(body.file)
     if(!{body}) return message.channel.send("I broke! Try again.")
 
