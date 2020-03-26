@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     let msg = await message.channel.send("Generating...")
 
     let {body} = await superagent
-    .get(`https://api-to.get-a.life/meme`)
+    .get(`https ( bổ sung sau)`)
     //console.log(body.file)
     if(!{body}) return message.channel.send("I broke! Try again.")
 
