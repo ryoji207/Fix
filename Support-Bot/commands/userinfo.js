@@ -1,32 +1,34 @@
 const Discord = require("discord.js")
 const botconfig = require("../botconfig.json");
 const colours = require("../colours.json");
-
+const bot = new Discord.Client();
+bot.commands = new Discord.Collection();
+const moment = require('moment');
 
 
 module.exports.run = async (bot, message, args) => {
-    let user = message.mentions.users.first() || message.author;
-
-    let infoUser = {
-        id:user.id,
-        avatar:user.displayAvatarURL(),
-        name:user.username,
-        tag:user.discriminator,
-        status:user.presence.status,
-        joined:user.joinedAt
-    }
-    console.log(user.displayAvatarURL());
+    let user = message.guild.member(message.mentions.users.first() || message.author);
+    const member = message.guild.member(user);
+    let infoUser = {};
+        infoUser.id=user.user.id;
+        infoUser.avatar="https://cdn.discordapp.com/avatars/"+user.user.id+"/"+user.user.avatar;
+        infoUser.name=user.user.username;
+        infoUser.tag=user.user.discriminator;
+        infoUser.status=user.presence.status;
+        infoUser.joinedSv=moment(member.joinedAt).fromNow();
+        infoUser.create=moment(user.user.createdAt).fromNow();
+   // console.log(user);
     let uEmbed = new Discord.MessageEmbed()
         .setColor(colours.cyan)
-        .setTitle("Thông tin người dùng")
-        .setAuthor(message.guild.name,infoUser.avatar)
+        .setTitle(infoUser.name+"#"+infoUser.tag)
+        .setAuthor("Thông tin người dùng",infoUser.avatar)
         .setThumbnail(infoUser.avatar)
-        .setDescription("ID:\n"+ infoUser.id)
         .addField("Tên:", infoUser.name, true)
         .addField("Mã số:", infoUser.tag, true)
         .addField("ID:", infoUser.id, true)
         .addField("Thông tin:", infoUser.status, true)
-        .addField("Ngày tham gia:", infoUser.joiend, true)
+        .addField("Ngày tham gia:", infoUser.joinedSv, true)
+        .addField("Ngày tạo tài khoản:", infoUser.create, true)
    // .setFooter(bot.user.displayAvatarURL);
      return message.channel.send(uEmbed);
 
